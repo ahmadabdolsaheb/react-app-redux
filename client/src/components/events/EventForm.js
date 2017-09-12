@@ -9,6 +9,7 @@ class EventForm extends React.Component {
     super(props);
     this.state = {
       title: '',
+      options: '',
       errors: {},
       isLoading: false
     };
@@ -27,7 +28,7 @@ class EventForm extends React.Component {
   }
 
   render() {
-    const { title, errors, isLoading } = this.state;
+    const { title, errors, isLoading, options } = this.state;
 
     return (
       <form onSubmit={this.onSubmit}>
@@ -41,6 +42,15 @@ class EventForm extends React.Component {
           onChange={this.onChange}
           error={errors.title}
           />
+          <TextFieldGroup
+            field="options"
+            label="Options"
+            name="options"
+            value={options}
+            onChange={this.onChange}
+            error={errors.title}
+            placeholder="input e.g.: option1, option2,"
+            />
         <button type="submit" disabled={isLoading} className="btn btn-primary">Create</button>
       </form>
     );
