@@ -1,8 +1,9 @@
 import React from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
 import { createEvent } from '../../actions/eventActions';
+import validateInput from '../../shared/validations/events';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 class EventForm extends React.Component {
   constructor(props){
@@ -22,9 +23,26 @@ class EventForm extends React.Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
-  onSubmit(e) {
+  isValid(){
+    const { errors, isValid } = validateInput(this.state);
+    console.log(isValid);
+
+    if (!isValid) {
+      console.log('hellow');
+      this.setState({ errors });
+    }
+    return isValid;
+  }
+
+  onSubmit(e){
     e.preventDefault();
-    this.props.createEvent(this.state);
+    if (this.isValid()) {
+      this.setState({ errors: {}, isLoading: true});
+      this.props.createEvent(this.state).then(
+        (res) => this.context.router.history.push('/'),
+        (err) => this.setState({ errors: err.response.data.errors, isLoading: false})
+      );
+    }
   }
 
   render() {
@@ -33,6 +51,8 @@ class EventForm extends React.Component {
     return (
       <form onSubmit={this.onSubmit}>
         <h1> Create New Game Event </h1>
+
+        { errors.form && <div className="alert alert-danger">{errors.form}</div> }
 
         <TextFieldGroup
           field="title"
@@ -48,8 +68,8 @@ class EventForm extends React.Component {
             name="options"
             value={options}
             onChange={this.onChange}
-            error={errors.title}
-            placeholder="input e.g.: option1, option2,"
+            error={errors.options}
+            placeholder="e.g. eat, pray, love"
             />
         <button type="submit" disabled={isLoading} className="btn btn-primary">Create</button>
       </form>
@@ -59,6 +79,10 @@ class EventForm extends React.Component {
 
 EventForm.propTypes = {
   createEvent: PropTypes.func.isRequired
+}
+
+EventForm.contextTypes = {
+  router: PropTypes.object.isRequired
 }
 
 export default connect(null, { createEvent })(EventForm);
