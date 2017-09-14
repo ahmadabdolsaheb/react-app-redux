@@ -9,6 +9,7 @@ class EventForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      userName: this.props.userName,
       title: '',
       options: '',
       errors: {},
@@ -25,10 +26,7 @@ class EventForm extends React.Component {
 
   isValid(){
     const { errors, isValid } = validateInput(this.state);
-    console.log(isValid);
-
     if (!isValid) {
-      console.log('hellow');
       this.setState({ errors });
     }
     return isValid;
@@ -47,7 +45,7 @@ class EventForm extends React.Component {
 
   render() {
     const { title, errors, isLoading, options } = this.state;
-
+    console.log(this.props.userName);
     return (
       <form onSubmit={this.onSubmit}>
         <h1> Create New Game Event </h1>
@@ -78,11 +76,18 @@ class EventForm extends React.Component {
 }
 
 EventForm.propTypes = {
-  createEvent: PropTypes.func.isRequired
+  createEvent: PropTypes.func.isRequired,
+    userName: PropTypes.string.isRequired
 }
 
 EventForm.contextTypes = {
   router: PropTypes.object.isRequired
 }
+function mapStateToProps(state) {
+  return {
+    userName: state.auth.user.username
+  }
+}
 
-export default connect(null, { createEvent })(EventForm);
+
+export default connect(mapStateToProps,  { createEvent })(EventForm);
