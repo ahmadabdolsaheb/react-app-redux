@@ -1,0 +1,4 @@
+error handleing if signup and events deliver the errs in diff part of response
+server side validations for login form.
+improve schema to include multi level array
+the react store has events inside events

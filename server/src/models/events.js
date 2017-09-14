@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var pollsSchema = new Schema({
+var eventSchema = new Schema({
   title:{
     type: String,
     required: true
-  }
-  creator:{
+  },
+  username:{
     type: String,
     required: true
   },
@@ -21,4 +21,4 @@ var pollsSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('UserModel', userSchema);
+module.exports = mongoose.model('eventModel', eventSchema);

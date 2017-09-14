@@ -26,6 +26,8 @@ class EventForm extends React.Component {
 
   isValid(){
     const { errors, isValid } = validateInput(this.state);
+
+
     if (!isValid) {
       this.setState({ errors });
     }
@@ -38,19 +40,19 @@ class EventForm extends React.Component {
       this.setState({ errors: {}, isLoading: true});
       this.props.createEvent(this.state).then(
         (res) => this.context.router.history.push('/'),
-        (err) => this.setState({ errors: err.response.data.errors, isLoading: false})
+        (err) => this.setState({ errors: err.response.data, isLoading: false}),//errors located directly in data because errors are validated differently in server
       );
     }
   }
 
   render() {
     const { title, errors, isLoading, options } = this.state;
-    console.log(this.props.userName);
+
     return (
       <form onSubmit={this.onSubmit}>
         <h1> Create New Game Event </h1>
 
-        { errors.form && <div className="alert alert-danger">{errors.form}</div> }
+        {errors.form && <div className="alert alert-danger">{errors.form}</div> }
 
         <TextFieldGroup
           field="title"
