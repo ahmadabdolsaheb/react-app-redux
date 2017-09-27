@@ -13,7 +13,6 @@ class Greetings extends React.Component {
     this.props.loadAllEvents();
   }
   render(){
-
     var text = "";
     if(this.props.events){
       text = this.props.events.slice(0).reverse().map((event, index )=>
