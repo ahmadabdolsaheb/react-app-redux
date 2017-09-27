@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 
 class Event extends React.Component {
@@ -7,10 +8,10 @@ class Event extends React.Component {
     super(props);
   }
   render(){
-    console.log(this.props);
-    const { title } = this.props.message;
+    const { title, _id } = this.props.event;
     return (
-      <div>
+      <div
+        className={classnames( 'alert','alert-success')}>
         {title}
       </div>
     );
@@ -18,7 +19,7 @@ class Event extends React.Component {
 }
 
 Event.propTypes = {
-  title: PropTypes.sting.isRequired,
+  event: PropTypes.object.isRequired
 }
 
 export default Event;
