@@ -13,16 +13,20 @@ class Greetings extends React.Component {
   }
   render(){
 
-    var text = "loading";
+    var text = "";
     if(this.props.events){
       console.log(this.props.events[0].username);
-      text = this.props.events[0].username;
+
+      text = this.props.events[0].title;
+      text = this.props.events.slice(0).reverse().map((event, index )=>
+       <h4 key={event._id} > {event.title} </h4>
+     );
     }
 
     return (
       <div className="jumbotron">
         <h1> Hi </h1>
-        <h2> {text}</h2>
+         {text}
       </div>
     );
   }
