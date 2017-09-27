@@ -7,21 +7,35 @@ class Greetings extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      allEvents:this.props.loadAllEvents()
+      events:[]
     }
+    this.props.loadAllEvents();
   }
   render(){
+
+    var text = "loading";
+    if(this.props.events){
+      console.log(this.props.events[0].username);
+      text = this.props.events[0].username;
+    }
+
     return (
       <div className="jumbotron">
         <h1> Hi </h1>
-        <h2> {this.state.events} </h2>
+        <h2> {text}</h2>
       </div>
     );
   }
 }
 
 Greetings.propTypes = {
-  loadAllEvents: PropTypes.func.isRequired
+  loadAllEvents: PropTypes.func.isRequired,
+  events: PropTypes.array
+}
+function mapStateToProps(state) {
+  return {
+    events: state.events.events
+  }
 }
 
-export default connect(null, { loadAllEvents }) (Greetings);
+export default connect(mapStateToProps, { loadAllEvents }) (Greetings);
