@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import{ loadAllEvents } from '../../actions/eventActions';
+import PropTypes from 'prop-types';
 
-function matched (event, id){
-  return event._id === id
-}
-
-class NewEventPage extends React.Component {
+class SingleEvent extends React.Component {
   render() {
     console.log(this.props.match.params.id);
     console.log(this.props.event);
+    if(!this.props.event){
+      this.props.loadAllEvents();
+      console.log("hello");
+    }
     return(
       <div className="jumbotron">
         <h1> poll </h1>
@@ -18,12 +20,19 @@ class NewEventPage extends React.Component {
   }
 }
 
-
+SingleEvent.propTypes = {
+  loadAllEvents: PropTypes.func.isRequired,
+  events: PropTypes.array
+}
 
 function mapStateToProps(state) {
-  return {
-    event: state.events.events.find(event => event._id === this.props.match.params.id)
+  if(state.events.events){
+    return {event: state.events.events[0]}
+  }
+
+  else {
+    return {event: state.events.events}
   }
 }
 
-export default connect(mapStateToProps, {}) (NewEventPage);
+export default connect(mapStateToProps, { loadAllEvents}) (SingleEvent);
