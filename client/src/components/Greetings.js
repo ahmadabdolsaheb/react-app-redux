@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import{ loadAllEvents } from '../actions/eventActions';
 import PropTypes from 'prop-types';
-import Event from './events/Event'
+import EventInGreetings from './events/EventInGreetings'
 
 class Greetings extends React.Component {
   constructor(props){
@@ -16,7 +16,7 @@ class Greetings extends React.Component {
     var text = "";
     if(this.props.events){
       text = this.props.events.slice(0).reverse().map((event, index )=>
-          <Event key={event._id} event={event}/>
+          <EventInGreetings key={event._id} event={event}/>
      );
     }
     return (

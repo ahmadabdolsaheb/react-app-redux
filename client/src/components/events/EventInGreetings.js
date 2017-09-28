@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
-class Event extends React.Component {
+class EventInGreetings extends React.Component {
   render(){
     const { title, _id } = this.props.event;
-    console.log(_id);
     return (
       <Link to={`/event/${_id}`}>
         <div
@@ -22,4 +21,4 @@ Event.propTypes = {
   event: PropTypes.object.isRequired
 }
 
-export default Event;
+export default EventInGreetings;
