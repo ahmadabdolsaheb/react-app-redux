@@ -55,10 +55,10 @@ class EventVotePage extends React.Component {
       text =
       <div>
         <h1> {this.state.title} </h1>
-        <div className="col-xs-6" >
+        <div className="col-md-6" >
              <EventVoteDisc options = {this.state.options}/>
          </div>
-         <div className='col-xs-6'>
+         <div className='col-md-6'>
         <PieChart options = {this.state.options}/>
         </div>
       </div>
