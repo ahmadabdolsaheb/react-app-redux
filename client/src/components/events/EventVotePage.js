@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import{ loadAllEvents } from '../../actions/eventActions';
 import PropTypes from 'prop-types';
 import EventVoteDisc from './EventVoteDisc';
+import PieChart from './PieChart';
 
 class EventVotePage extends React.Component {
   constructor(props) {
@@ -54,7 +55,12 @@ class EventVotePage extends React.Component {
       text =
       <div>
         <h1> {this.state.title} </h1>
-        <EventVoteDisc options = {this.state.options}/>
+        <div className="col-xs-6" >
+             <EventVoteDisc options = {this.state.options}/>
+         </div>
+         <div className='col-xs-6'>
+        <PieChart options = {this.state.options}/>
+        </div>
       </div>
     }
 

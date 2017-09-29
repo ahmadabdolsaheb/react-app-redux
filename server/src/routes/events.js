@@ -20,7 +20,7 @@ router.post('/', authenticate, (req,res) => {
     }
     else {
       let { userName, title, options, email } = req.body;
-      options = options.replace(/^[ ]+|[ ]+$|[, ]+$/g,'').split(",").map(x => [x.replace(/^[ ]+|[ ]+$/g,'') , 0]);
+      options = options.replace(/^[ ]+|[ ]+$|[, ]+$/g,'').split(",").map(x => [x.replace(/^[ ]+|[ ]+$/g,'') , Math.floor(Math.random() * 6) + 1 ]);
       var newEvent = new eventModel ({
         username:userName,
         title:title,
