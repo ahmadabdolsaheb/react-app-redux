@@ -13,3 +13,7 @@
 .navbar-right {
   float: right!important;
 }
+
+.custom-button{
+  width:50%;
+}

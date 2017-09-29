@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import{ loadAllEvents } from '../../actions/eventActions';
 import PropTypes from 'prop-types';
+import EventVoteDisc from './EventVoteDisc';
 
 class EventVotePage extends React.Component {
   constructor(props) {
@@ -50,12 +51,16 @@ class EventVotePage extends React.Component {
     let text = "loading ...";
 
     if(this.state.id){
-      text = this.state.id;
+      text =
+      <div>
+        <h1> {this.state.title} </h1>
+        <EventVoteDisc options = {this.state.options}/>
+      </div>
     }
 
     return(
-      <div className="jumbotron">
-        <h3>{text}</h3>
+      <div className="jumbotron row">
+        {text}
       </div>
     );
   }

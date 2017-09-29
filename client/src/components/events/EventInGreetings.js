@@ -17,7 +17,7 @@ class EventInGreetings extends React.Component {
   }
 }
 
-Event.propTypes = {
+EventInGreetings.propTypes = {
   event: PropTypes.object.isRequired
 }
 
