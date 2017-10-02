@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import{ loadAllEvents } from '../../actions/eventActions';
+import{ loadAllEvents, updateEvent } from '../../actions/eventActions';
 import PropTypes from 'prop-types';
 import EventVoteDisc from './EventVoteDisc';
 import PieChart from './PieChart';
@@ -16,8 +16,8 @@ class EventVotePage extends React.Component {
     }
     if(!this.props.events){
       this.props.loadAllEvents();
-      console.log("Loading events");
     }
+    this.onClick = this.onClick.bind(this);
   }
 
   eventFinder(events, id){
@@ -45,10 +45,17 @@ class EventVotePage extends React.Component {
   componentDidMount(){
     this.stateSetter();
   }
-
+  onClick(e){
+    this.props.updateEvent({
+      _id:this.state.id,
+      option:e.currentTarget.getAttribute("id"),
+      value:e.currentTarget.getAttribute("id")
+    });
+    console.log("id: " + e.currentTarget.getAttribute("id"));
+    console.log("value:" + e.currentTarget.getAttribute("value"));
+    console.log("event_id: " + this.state.id);
+  }
   render() {
-    console.log("id: " + this.state.id);
-    console.log("op: " + this.state.options);
     let text = "loading ...";
 
     if(this.state.id){
@@ -56,7 +63,7 @@ class EventVotePage extends React.Component {
       <div>
         <h1> {this.state.title} </h1>
         <div className="col-md-6" >
-             <EventVoteDisc options = {this.state.options}/>
+             <EventVoteDisc options = {this.state.options} onClick = {this.onClick}/>
          </div>
          <div className='col-md-6'>
         <PieChart options = {this.state.options}/>
@@ -81,4 +88,4 @@ function mapStateToProps(state) {
     return {events: state.events.events}
 }
 
-export default connect(mapStateToProps, { loadAllEvents}) (EventVotePage);
+export default connect(mapStateToProps, {loadAllEvents, updateEvent}) (EventVotePage);

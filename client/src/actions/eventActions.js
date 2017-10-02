@@ -22,3 +22,9 @@ export function loadAllEvents() {
     });
   }
 }
+
+export function updateEvent(event) {
+  return dispatch => {
+    return axios.put('/api/events', event)
+  };
+}

@@ -2,19 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Pie from 'organism-react-d3-piechart';
 
-
-
-
-
 class PieChart extends React.Component {
   render(){
     let total = 0;
-    this.props.options.map(function(item) {
+    this.props.options.forEach(function(item) {
       total += item[1];
     });
 
     let data = [];
-    this.props.options.map(function(item) {
+    this.props.options.forEach(function(item) {
       if(item[1]){
         data.push({value: Math.round(item[1]/total*100, 1), label: item[0]});
       }
