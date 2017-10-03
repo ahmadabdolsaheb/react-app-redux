@@ -46,10 +46,15 @@ class EventVotePage extends React.Component {
     this.stateSetter();
   }
   onClick(e){
+    let options = this.state.options.map(function(option, index ){
+      if(option[0] === e.currentTarget.getAttribute("id")){
+        option[1] ++;
+      }
+      return option;
+    });
     this.props.updateEvent({
       _id:this.state.id,
-      option:e.currentTarget.getAttribute("id"),
-      value:e.currentTarget.getAttribute("id")
+      options:options
     });
     console.log("id: " + e.currentTarget.getAttribute("id"));
     console.log("value:" + e.currentTarget.getAttribute("value"));

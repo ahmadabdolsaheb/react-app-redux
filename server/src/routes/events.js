@@ -8,19 +8,16 @@ let router = express.Router();
 
 
 router.put('/',(req,res) => {
-  console.log(req.body);
-  /*let {id, value, option} = req.body;
-  newEvent.findOneAndUpdate(
-
-    {_id:id, options: [option, value]},
-    { $set: {"options.$": [option, value + 1]}},
-      function(err){
+  let {options, _id} = req.body;
+  eventModel.findOne({_id:_id},
+      function(err, doc){
       if(err){
           res.status(400).json({ error: err });
       }
-      console.log({message:"event updated"});
+      doc.options = options;
+      doc.save();
+      console.log(doc);
   });
-  */
 });
 
 router.get('', (req, res) => {
