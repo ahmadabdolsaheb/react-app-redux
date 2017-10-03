@@ -25,6 +25,9 @@ export function loadAllEvents() {
 
 export function updateEvent(event) {
   return dispatch => {
-    return axios.put('/api/events', event)
+    return axios.put('/api/events', event).then(res => {
+      const event = res.data.options;
+      console.log("back from server: " + event);
+    });
   };
 }
