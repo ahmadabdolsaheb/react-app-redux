@@ -14,10 +14,10 @@ export function loadEvents(events) {
   };
 }
 
-export function loadVoted(options) {
+export function loadVoted(event) {
   return {
     type: LOAD_VOTED_EVENT,
-    options
+    event
   };
 }
 
@@ -33,9 +33,9 @@ export function loadAllEvents() {
 export function updateEvent(event) {
   return dispatch => {
     return axios.put('/api/events', event).then(res => {
-      const options = res.data.options;
-      dispatch(loadVoted(options));
-      console.log("back from server: " + options);
+      const event = res.data;
+      dispatch(loadVoted(event));
+      console.log("back from server: " + event.options);
     });
   };
 }
