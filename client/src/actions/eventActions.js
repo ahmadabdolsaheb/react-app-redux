@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOAD_ALL_EVENTS } from './types';
+import { LOAD_ALL_EVENTS, LOAD_VOTED_EVENT} from './types';
 
 export function createEvent(event) {
   return dispatch => {
@@ -11,6 +11,13 @@ export function loadEvents(events) {
   return {
     type: LOAD_ALL_EVENTS,
     events
+  };
+}
+
+export function loadVoted(event) {
+  return {
+    type: LOAD_VOTED_EVENT,
+    event
   };
 }
 
@@ -26,8 +33,9 @@ export function loadAllEvents() {
 export function updateEvent(event) {
   return dispatch => {
     return axios.put('/api/events', event).then(res => {
-      const event = res.data.options;
+      const event = res.data;
       console.log("back from server: " + event);
+      dispatch(loadVoted(event));
     });
   };
 }

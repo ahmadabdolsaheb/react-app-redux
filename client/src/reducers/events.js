@@ -1,4 +1,4 @@
-import { LOAD_ALL_EVENTS } from '../actions/types';
+import { LOAD_ALL_EVENTS, LOAD_VOTED_EVENT } from '../actions/types';
 
 export default (state = [], action = {}) => {
     switch(action.type) {
@@ -7,6 +7,9 @@ export default (state = [], action = {}) => {
         return { ...state,
           events: action.events
         }
+      case LOAD_VOTED_EVENT:
+      console.log(action.event._id)
+        return state
       default: return state;
     }
 }
