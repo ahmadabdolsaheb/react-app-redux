@@ -11,13 +11,15 @@ import SignupPage from './components/signup/SignupPage';
 import LoginPage from './components/login/LoginPage';
 import NewEventPage from './components/events/NewEventPage';
 import EventVotePage from './components/events/EventVotePage';
+import MyEventsPage from './components/events/MyEventsPage';
 
 import requireAuth from'./utils/requireAuth';
-
+  
 const createRoutes = () => (
     <Router>
       <App>
         <Switch>
+          <Route exact path="/my-events" component={requireAuth(MyEventsPage)}/>
           <Route exact path="/" component={Greetings}/>
           <Route exact path="/signup" component={SignupPage}/>
           <Route exact path="/login" component={LoginPage}/>
