@@ -8,16 +8,14 @@ export default (state = [], action = {}) => {
           events: action.events
         }
       case LOAD_VOTED_EVENT:
-
-        console.log("in reducer" + action.event.options);
-         return {
-       ...state,
-       events:{ ...events,
-         events: state.events.events.map(
+      const newState = {
+         ...state,
+         events: state.events.map(
              (event, i) => event._id === action.event._id ? {...event, options: action.event.options} : event
          )
-       }
-    }
+        }
+        console.log(newState);
+        return newState;
       default: return state;
     }
 }

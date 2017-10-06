@@ -16,6 +16,7 @@ router.put('/',(req,res) => {
           res.status(400).json({ error: err });
       }else{
         res.json(event);
+        console.log(event);
       }
   });
 });
