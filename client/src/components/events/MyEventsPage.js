@@ -15,8 +15,9 @@ class MyEventsPage extends React.Component {
   render(){
     var text = "";
     if(this.props.events){
-      text = this.props.events.slice(0).reverse().map((event, index )=>
-          <EventInMyEvents key={event._id} event={event}/>
+      text = this.props.events.slice(0).reverse().map((event, i ) =>
+            event.username === this.props.username ?
+          <EventInMyEvents key={event._id} event={event}/>: ""
      );
     }
     return (
@@ -34,7 +35,8 @@ MyEventsPage.propTypes = {
 }
 function mapStateToProps(state) {
   return {
-    events: state.events.events
+    events: state.events.events,
+    username: state.auth.user.username
   }
 }
 

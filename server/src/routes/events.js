@@ -37,7 +37,7 @@ router.post('/', authenticate, (req,res) => {
       let { userName, title, options, email } = req.body;
 
       //remove comma and seperate each item with its value in an array example options = [['one',1], ['two',2]];
-      options = options.replace(/^[ ]+|[ ]+$|[, ]+$/g,'').split(",").map(x => [x.replace(/^[ ]+|[ ]+$/g,'') , Math.floor(Math.random() * 6) + 1 ]);
+      options = options.replace(/^[ ]+|[ ]+$|[, ]+$/g,'').split(",").map(x => [x.replace(/^[ ]+|[ ]+$/g,'') , 0]);
       var newEvent = new eventModel ({
         username:userName,
         title:title,
