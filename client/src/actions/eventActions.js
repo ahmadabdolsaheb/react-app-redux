@@ -1,6 +1,21 @@
 import axios from 'axios';
 import { LOAD_ALL_EVENTS, LOAD_VOTED_EVENT} from './types';
 
+export function deleteOneEvent(ID) {
+  return {
+    type: LOAD_ALL_EVENTS,
+    ID
+  };
+}
+export function deleteEvent(id) {
+  return dispatch => {
+    return axios.delete('/api/events/' + id).then(res => {
+      const ID = res.data;
+      dispatch(deleteOneEvent(ID));
+    });
+  }
+}
+
 export function createEvent(event) {
   return dispatch => {
     return axios.post('/api/events', event)
@@ -20,6 +35,7 @@ export function loadVoted(event) {
     event
   };
 }
+
 
 export function loadAllEvents() {
   return dispatch => {

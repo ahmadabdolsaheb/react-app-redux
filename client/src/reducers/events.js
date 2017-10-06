@@ -1,9 +1,11 @@
-import { LOAD_ALL_EVENTS, LOAD_VOTED_EVENT } from '../actions/types';
+import { LOAD_ALL_EVENTS, LOAD_VOTED_EVENT, DELETE_EVENT } from '../actions/types';
 
 export default (state = [], action = {}) => {
     switch(action.type) {
+      case DELETE_EVENT:
+      console.log("from reducer" + action);
+        return state;
       case LOAD_ALL_EVENTS:
-      console.log(action.events);
         return { ...state,
           events: action.events
         }
@@ -14,7 +16,6 @@ export default (state = [], action = {}) => {
              (event, i) => event._id === action.event._id ? {...event, options: action.event.options} : event
          )
         }
-        console.log(newState);
         return newState;
       default: return state;
     }

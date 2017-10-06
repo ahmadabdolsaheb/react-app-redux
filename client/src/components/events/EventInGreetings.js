@@ -7,12 +7,14 @@ class EventInGreetings extends React.Component {
   render(){
     const { title, _id } = this.props.event;
     return (
-      <Link to={`/event/${_id}`}>
+
         <div
           className={classnames( 'alert','alert-info')}>
+          <Link to={`/event/${_id}`}>
           {title}
+          </Link>
         </div>
-      </Link>
+
     );
   }
 }

@@ -4,16 +4,26 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
 class EventInMyEvents extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+  onClick(){
+    this.props.deleteEvent(this.props.event._id);
+  }
   render(){
     const { title, _id } = this.props.event;
     return (
-      <Link to={`/event/${_id}`}>
+
         <div
           className={classnames( 'alert','alert-info')}>
-          <button onClick={this.onClick} className="close"><span>&times;</span></button>
+        <Link to={`/event/${_id}`}>
+
           {title}
+        </Link>
+        <button onClick={this.onClick} className="close"><span>&times;</span></button>
         </div>
-      </Link>
+
     );
   }
 }

@@ -6,9 +6,22 @@ import isEmpty from 'lodash/isEmpty';
 
 let router = express.Router();
 
+router.delete('/:id',(req,res) => {
+  eventModel.remove({_id:req.params.id},
+    function(err, event) {
+      if (err) {
+        res.status(400).json({ error: err });
+      }
+      else {
+        console.log(req.params.id);
+        res.json(req.params.id);
+      }
+  });
+});
 
 router.put('/',(req,res) => {
   let {options, _id} = req.body;
+  console.log(_id);
   eventModel.findOneAndUpdate({_id:_id},
     {$set:{"options": options}}, {new: true},
       function(err, event){
@@ -16,7 +29,6 @@ router.put('/',(req,res) => {
           res.status(400).json({ error: err });
       }else{
         res.json(event);
-        console.log(event);
       }
   });
 });
@@ -30,7 +42,6 @@ router.get('', (req, res) => {
 router.post('/', authenticate, (req,res) => {
     let { errors, isValid } = commonValidations(req.body);
     if(!isValid) {
-      console.log(errors);
       res.status(400).json(errors);
     }
     else {

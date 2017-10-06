@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import{ loadAllEvents } from '../../actions/eventActions';
+import{ loadAllEvents, deleteEvent } from '../../actions/eventActions';
 import PropTypes from 'prop-types';
 import EventInMyEvents from './EventInMyEvents';
 
@@ -17,7 +17,7 @@ class MyEventsPage extends React.Component {
     if(this.props.events){
       text = this.props.events.slice(0).reverse().map((event, i ) =>
             event.username === this.props.username ?
-          <EventInMyEvents key={event._id} event={event}/>: ""
+          <EventInMyEvents key={event._id} event={event} deleteEvent={this.props.deleteEvent}/>: ""
      );
     }
     return (
@@ -31,6 +31,7 @@ class MyEventsPage extends React.Component {
 
 MyEventsPage.propTypes = {
   loadAllEvents: PropTypes.func.isRequired,
+  deleteEvent: PropTypes.func.isRequired,
   events: PropTypes.array
 }
 function mapStateToProps(state) {
@@ -40,4 +41,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { loadAllEvents }) (MyEventsPage);
+export default connect(mapStateToProps, { loadAllEvents, deleteEvent }) (MyEventsPage);

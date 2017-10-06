@@ -4,3 +4,4 @@ improve schema to include multi level array
 the react store has events inside events
 the polls should have unique titles, verification
 the styles does not load when page refresh on the single event page
+delete res data does not come back
