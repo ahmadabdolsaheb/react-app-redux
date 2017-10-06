@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import{ loadAllEvents, updateEvent } from '../../actions/eventActions';
 import PropTypes from 'prop-types';
 import EventVoteDisc from './EventVoteDisc';
-import PieChart from './PieChart';
+import PieChart from '../common/PieChart';
 
 class EventVotePage extends React.Component {
   constructor(props) {
