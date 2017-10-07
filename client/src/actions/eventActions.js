@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { LOAD_ALL_EVENTS, LOAD_VOTED_EVENT} from './types';
+import { LOAD_ALL_EVENTS, LOAD_VOTED_EVENT, DELETE_EVENT} from './types';
 
 export function deleteOneEvent(ID) {
   return {
-    type: LOAD_ALL_EVENTS,
+    type: DELETE_EVENT,
     ID
   };
 }
