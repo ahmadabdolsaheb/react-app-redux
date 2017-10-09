@@ -60,10 +60,14 @@ class EventVotePage extends React.Component {
     });
   }
   onAdd(e){
-    let array = this.state.options;
+    let options = this.state.options;
     let newOption = [String(e), 0];
-    console.log(array.push(newOption));
-    //options.push([e, 0])
+    options.push(newOption);
+    console.log(options);
+    this.props.updateEvent({
+      _id:this.state.id,
+      options:options
+    });
   }
   render() {
     console.log(this.props.id);
