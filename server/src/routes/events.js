@@ -13,15 +13,15 @@ router.delete('/:id',authenticate,(req,res) => {
         res.status(400).json({ error: err });
       }
       else {
-        console.log(e)
-        res.json(event._id);
+        console.log("server:" + req.params.id)
+        res.json(req.params.id);
       }
   });
 });
 
 router.put('/add',authenticate,(req,res) => {
   let {options, _id} = req.body;
-  console.log(_id);
+  console.log(options);
   eventModel.findOneAndUpdate({_id:_id},
     {$set:{"options": options}}, {new: true},
       function(err, event){
@@ -35,7 +35,7 @@ router.put('/add',authenticate,(req,res) => {
 
 router.put('/',(req,res) => {
   let {options, _id} = req.body;
-  console.log(_id);
+  console.log(options);
   eventModel.findOneAndUpdate({_id:_id},
     {$set:{"options": options}}, {new: true},
       function(err, event){
