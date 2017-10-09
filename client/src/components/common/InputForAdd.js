@@ -12,7 +12,10 @@ class InputForAdd extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
   onClick(){
-    this.props.onAdd("potatoes");
+    this.props.onAdd(this.state.input);
+    this.setState({
+      input: ""
+    });
   }
   onChange(e){
     this.setState({
@@ -24,7 +27,7 @@ class InputForAdd extends React.Component {
     return (
 
       <div className="input-group">
-      <input type="text" onChange = {this.onChange} className="form-control" placeholder="Search for..."/>
+      <input  name = "input"value = {this.state.input} type="text" onChange = {this.onChange} className="form-control" placeholder="Search for..."/>
             <span className="input-group-btn">
               <button className="btn btn-secondary" onClick = {this.onClick} type="button">Go!</button>
             </span>
