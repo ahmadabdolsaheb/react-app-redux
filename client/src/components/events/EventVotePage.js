@@ -4,6 +4,7 @@ import{ loadAllEvents, updateEvent } from '../../actions/eventActions';
 import PropTypes from 'prop-types';
 import EventVoteDisc from './EventVoteDisc';
 import PieChart from '../common/PieChart';
+import InputForAdd from '../common/InputForAdd';
 
 class EventVotePage extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class EventVotePage extends React.Component {
       this.props.loadAllEvents();
     }
     this.onClick = this.onClick.bind(this);
+    this.onAdd = this.onAdd.bind(this);
   }
 
   eventFinder(events, id){
@@ -56,19 +58,20 @@ class EventVotePage extends React.Component {
       _id:this.state.id,
       options:options
     });
-    console.log("id: " + e.currentTarget.getAttribute("id"));
-    console.log("value:" + e.currentTarget.getAttribute("value"));
-    console.log("event_id: " + this.state.id);
+  }
+  onAdd(e){
+    console.log(e)
   }
   render() {
+    console.log(this.props.id);
     let text = "loading ...";
-
     if(this.state.id){
       text =
       <div>
         <h1> {this.state.title} </h1>
         <div className="col-md-6" >
              <EventVoteDisc options = {this.state.options} onClick = {this.onClick}/>
+             { this.props.id ? <InputForAdd onAdd = {this.onAdd} />: null }
          </div>
          <div className='col-md-6'>
         <PieChart options = {this.state.options}/>
@@ -90,7 +93,10 @@ EventVotePage.propTypes = {
 }
 
 function mapStateToProps(state) {
-    return {events: state.events.events}
+    return {
+      events: state.events.events,
+      id: state.auth.user.id
+    }
 }
 
 export default connect(mapStateToProps, {loadAllEvents, updateEvent}) (EventVotePage);

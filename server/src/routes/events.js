@@ -6,15 +6,29 @@ import isEmpty from 'lodash/isEmpty';
 
 let router = express.Router();
 
-router.delete('/:id',(req,res) => {
+router.delete('/:id',authenticate,(req,res) => {
   eventModel.remove({_id:req.params.id},
     function(err, event) {
       if (err) {
         res.status(400).json({ error: err });
       }
       else {
-        console.log(req.params.id);
-        res.json(req.params.id);
+        console.log(e)
+        res.json(event._id);
+      }
+  });
+});
+
+router.put('/add',authenticate,(req,res) => {
+  let {options, _id} = req.body;
+  console.log(_id);
+  eventModel.findOneAndUpdate({_id:_id},
+    {$set:{"options": options}}, {new: true},
+      function(err, event){
+      if(err){
+          res.status(400).json({ error: err });
+      }else{
+        res.json(event);
       }
   });
 });
@@ -32,6 +46,7 @@ router.put('/',(req,res) => {
       }
   });
 });
+
 
 router.get('', (req, res) => {
   return eventModel.find({}).then(events => {
