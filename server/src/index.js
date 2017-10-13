@@ -14,6 +14,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/vote2', { useMo
 
 let app = express();
 
+app.use(express.static(path.join(__dirname, '../build')));
+
 app.use(bodyParser.json());
 
 app.use('/api/users', users);

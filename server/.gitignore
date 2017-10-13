@@ -4,17 +4,16 @@
 
 .env
 
+#secrect auth
+config.js
+
 # dependencies
 /node_modules
 
 # testing
 /coverage
 
-# production
-/build
 
-#dist
-/dist
 
 # misc
 .DS_Store
