@@ -75,8 +75,8 @@ class EventVotePage extends React.Component {
     if(this.state.id){
       text =
       <div>
-        <h1> {this.state.title} </h1>
-        <div className="col-md-6" >
+        <h2> {this.state.title} </h2>
+        <div className="col-md-6 list-group" >
              <EventVoteDisc options = {this.state.options} onClick = {this.onClick}/>
              { this.props.id ? <InputForAdd onAdd = {this.onAdd} />: null }
          </div>

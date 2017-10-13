@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
 class EventInGreetings extends React.Component {
@@ -8,12 +7,11 @@ class EventInGreetings extends React.Component {
     const { title, _id } = this.props.event;
     return (
 
-        <div
-          className={classnames( 'alert','alert-info')}>
-          <Link to={`/event/${_id}`}>
+
+          <Link className="list-group-item" to={`/event/${_id}`}>
           {title}
           </Link>
-        </div>
+
 
     );
   }

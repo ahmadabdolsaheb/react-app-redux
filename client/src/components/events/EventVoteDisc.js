@@ -6,12 +6,12 @@ class EventVoteDisc extends React.Component {
 
   render(){
     var options = this.props.options.map((option, index )=>
-      <div key={index} className="row" onClick={this.props.onClick} id = {option[0]} value = {option[1]} >
-        <button type="button" className = "btn btn-default custom-button">
-        <h3 className="col-xs-6">{option[0]}:</h3>
-        <h3 className="col-xs-6">{option[1]}</h3>
-        </button>
-      </div>);
+      <a key={index} className="list-group-item" onClick={this.props.onClick} id = {option[0]} value = {option[1]} >
+
+      {option[0]}
+        <span className="badge">{option[1]}</span>
+
+      </a>);
     return (
 
       <div>

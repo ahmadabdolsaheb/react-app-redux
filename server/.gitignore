@@ -4,8 +4,6 @@
 
 .env
 
-#secrect auth
-config.js
 
 # dependencies
 /node_modules

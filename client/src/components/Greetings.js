@@ -22,7 +22,9 @@ class Greetings extends React.Component {
     return (
       <div className="jumbotron">
         <h1> Recent Polls </h1>
-        {text}
+        <div className=" list-group" >
+          {text}
+        </div>
       </div>
     );
   }
